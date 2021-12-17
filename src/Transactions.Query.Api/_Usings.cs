@@ -1,0 +1,13 @@
+﻿global using System.Reflection;
+global using GraphQL;
+global using GraphQL.MicrosoftDI;
+global using GraphQL.Server;
+global using GraphQL.Types;
+global using MediatR;
+global using Transactions.Query.Api.Features.GetCurrentBalance;
+global using Transactions.Query.Api.Features.GetTransactionsHistory;
+global using Transactions.Query.Api.GraphQL;
+global using Transactions.Query.Api.GraphQL.Types;
+global using Transactions.Query.Api.Models;
+global using Transactions.Query.Api.Repositories;
+global using Transactions.Query.Infrastructure.Data.Extensions;

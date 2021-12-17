@@ -1,0 +1,15 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoDefaultExcludes>true</NoDefaultExcludes>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+        <EnablePreviewFeatures>True</EnablePreviewFeatures>
+        <Version>0.1.0</Version>
+        <Authors>Leonardo C. Guilen</Authors>
+    </PropertyGroup>
+</Project>

@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  query-api:
+    build: ./
+    labels:
+      co.elastic.logs/enabled: true
+      co.elastic.logs/json.keys_under_root: true
+      co.elastic.logs/json.overwrite_keys: true
+      co.elastic.logs/json.add_error_key: true
+      co.elastic.logs/json.expand_keys: true
+
+  mongo:
+    build: ./docker/mongo

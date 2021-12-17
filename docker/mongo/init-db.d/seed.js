@@ -1,0 +1,105 @@
+// CREATE ROOT USER
+db.createUser(
+  {
+    user: "root",
+    pwd: "root",
+    roles: [
+      { role: "readWrite", db: "BANK_TRANSACTIONS" },
+      { role: "read", db: "BANK_TRANSACTIONS" },
+      { role: "dbAdmin", db: "BANK_TRANSACTIONS" }
+    ]
+  }
+)
+
+// DROP EXISTING COLLECTIONS
+db.BALANCE.drop();
+db.TRANSACTIONS_HISTORY.drop();
+
+// CREATE AND SEED BALANCE COLLECTION
+db.BALANCE.insertMany([
+  {
+    ACCOUNT_UUID: '26121a7a-4a68-42f3-8365-aff90c7e3a85',
+    BALANCE_VALUE: 550.16,
+    BALANCE_DATE: ISODate("2021-12-16 09:09:01")
+  },
+  {
+    ACCOUNT_UUID: '6fd380ce-bf65-47d7-9dad-38394f6dcd8e',
+    BALANCE_VALUE: 623.52,
+    BALANCE_DATE: ISODate("2021-12-11 12:56:01")
+  },
+  {
+    ACCOUNT_UUID: '92a1443e-ae34-4098-9650-320b1a6afc7b',
+    BALANCE_VALUE: 150.65,
+    BALANCE_DATE: ISODate("2021-12-11 11:36:01")
+  },
+  {
+    ACCOUNT_UUID: 'f0f1edaa-f240-48ab-a9c9-8df8fc30b469',
+    BALANCE_VALUE: 14.23,
+    BALANCE_DATE: ISODate("2021-12-10 09:16:00")
+  },
+  {
+    ACCOUNT_UUID: '9ec06f30-f6f9-479c-abb1-77b71d536963',
+    BALANCE_VALUE: 1012.87,
+    BALANCE_DATE: ISODate("2021-12-05 16:25:00")
+  }
+])
+db.BALANCE.createIndex(
+  {
+    "ACCOUNT_UUID": -1
+  },
+  {
+    name: "IX_ACCOUNT_UUID",
+    unique: true,
+  })
+
+// CREATE AND SEED TRANSACTIONS_HISTORY COLLECTION
+db.TRANSACTIONS_HISTORY.insertMany([
+  {
+    TRANSACTION_UUID: 'ad794898-4e26-4086-bdf0-ac10584efa4b',
+    ACCOUNT_UUID: '26121a7a-4a68-42f3-8365-aff90c7e3a85',
+    OPERATION_UUID: '8e1c0f74-727f-44e4-b05b-e634b44644ac',
+    OPERATION_DESCRIPTION: 'Compra Débito',
+    TRANSACTION_VALUE: 28.79,
+    TRANSACTION_DATE: ISODate("2021-12-16 16:00:00"),
+  },
+  {
+    TRANSACTION_UUID: '5cdeefc0-63f6-4ffa-90d7-e8ca6ad09e60',
+    ACCOUNT_UUID: '26121a7a-4a68-42f3-8365-aff90c7e3a85',
+    OPERATION_UUID: '8e1c0f74-727f-44e4-b05b-e634b44644ac',
+    OPERATION_DESCRIPTION: 'Compra Débito',
+    TRANSACTION_VALUE: 124.90,
+    TRANSACTION_DATE: ISODate("2021-12-05 09:25:00"),
+  },
+  {
+    TRANSACTION_UUID: '3d11908d-d3e0-4f49-a846-cb2f1d45cb5c',
+    ACCOUNT_UUID: '26121a7a-4a68-42f3-8365-aff90c7e3a85',
+    OPERATION_UUID: '018b8d04-2ddd-4712-b86b-889c636b92c1',
+    OPERATION_DESCRIPTION: 'Saque',
+    TRANSACTION_VALUE: 60,
+    TRANSACTION_DATE: ISODate("2021-11-28 13:16:00"),
+  },
+  {
+    TRANSACTION_UUID: '0991747f-a354-465a-a4af-fc31a2bd49fc',
+    ACCOUNT_UUID: '6fd380ce-bf65-47d7-9dad-38394f6dcd8e',
+    OPERATION_UUID: '018b8d04-2ddd-4712-b86b-889c636b92c1',
+    OPERATION_DESCRIPTION: 'Saque',
+    TRANSACTION_VALUE: 140,
+    TRANSACTION_DATE: ISODate("2021-12-15 10:05:00"),
+  },
+  {
+    TRANSACTION_UUID: 'e102ee3b-07f8-4a63-b4bb-74cf3e54cce6',
+    ACCOUNT_UUID: '6fd380ce-bf65-47d7-9dad-38394f6dcd8e',
+    OPERATION_UUID: '8e1c0f74-727f-44e4-b05b-e634b44644ac',
+    OPERATION_DESCRIPTION: 'Compra Débito',
+    TRANSACTION_VALUE: 49.90,
+    TRANSACTION_DATE: ISODate("2021-12-14 18:06:00"),
+  },
+])
+db.BALANCE.createIndex(
+  {
+    "ACCOUNT_UUID": -1,
+  },
+  {
+    name: "IX_ACCOUNT_UUID",
+    unique: true,
+  })
